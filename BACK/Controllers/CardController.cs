@@ -8,34 +8,68 @@ namespace BACK.Controllers
     [Route("/cards")]
     public class CardController : ControllerBase
     {
-        private readonly KanbanContext _context;
-        public CardController(KanbanContext context)
+        private readonly IRepository _repository;
+
+        public string Cultura { get; set; } = "pt-br";
+
+        public CardController(IRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_context.Cards);
+            return Ok(_repository.GetAllCards());
         }
 
         [HttpPost]
         public IActionResult Post(Card card)
         {
-            return Ok($"Método POST de CardController.cs\n{card.Id}, {card.Titulo}");
+            if(!card.CamposValidos())
+                return BadRequest("Erro 400: Campos não podem ser nulos ou vazios.");
+
+            _repository.Add(card);
+            if(_repository.SaveChanges()) return Ok(card);
+
+            return BadRequest("Card não inserido.");
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public IActionResult Put(int id, Card card)
         {
-            return Ok($"Método PUT da classe CardController.cs\n{id}, {card.Id}, {card.Titulo}");
+            if(!card.CamposValidos()) return BadRequest("Erro 400: Campos não podem ser nulos ou vazios.");
+
+            if(id != card.Id) return BadRequest("Erro 400: Id na URL deve ser igual ao Id passado no corpo da requisição.");
+
+            if(_repository.GetCardById(id) == null) return NotFound("Erro 404: Id não encontrado.");
+
+            _repository.Update(card);
+            if(_repository.SaveChanges())
+            {
+                card.RegistrarAtividade("alterar");
+                return Ok(card);
+            } 
+                
+
+            return BadRequest("Card não atualizado.");
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            return Ok($"Método DELETE da classe Controller.cs\nId a ser deletado: {id}");
+            var card = _repository.GetCardById(id);
+
+            if(card == null) return NotFound("Erro 404: Id não encontrado.");
+
+            _repository.Delete(card);
+            if(_repository.SaveChanges())
+            {
+                card.RegistrarAtividade("remover");
+                return Ok(_repository.GetAllCards());
+            } 
+
+            return BadRequest("Card não deletado.");
         }
     }
 }
