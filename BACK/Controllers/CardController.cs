@@ -1,16 +1,16 @@
 using BACK.Data;
 using BACK.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BACK.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("/cards")]
     public class CardController : ControllerBase
     {
         private readonly IRepository _repository;
-
-        public string Cultura { get; set; } = "pt-br";
 
         public CardController(IRepository repository)
         {
