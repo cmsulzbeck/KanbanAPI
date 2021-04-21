@@ -8,8 +8,6 @@ C:\Users\cmsulzbeck\OneDrive\Área de Trabalho\KanbanAPI\BACK\obj\Debug\net5.0\B
 C:\Users\cmsulzbeck\OneDrive\Área de Trabalho\KanbanAPI\BACK\obj\Debug\net5.0\BACK.dll
 C:\Users\cmsulzbeck\OneDrive\Área de Trabalho\KanbanAPI\BACK\obj\Debug\net5.0\ref\BACK.dll
 C:\Users\cmsulzbeck\OneDrive\Área de Trabalho\KanbanAPI\BACK\obj\Debug\net5.0\BACK.pdb
-C:\Users\cmsulzbeck\OneDrive\Área de Trabalho\KanbanAPI\BACK\bin\Debug\net5.0\appsettings.Development.json
-C:\Users\cmsulzbeck\OneDrive\Área de Trabalho\KanbanAPI\BACK\bin\Debug\net5.0\appsettings.json
 C:\Users\cmsulzbeck\OneDrive\Área de Trabalho\KanbanAPI\BACK\bin\Debug\net5.0\BACK.exe
 C:\Users\cmsulzbeck\OneDrive\Área de Trabalho\KanbanAPI\BACK\bin\Debug\net5.0\BACK.deps.json
 C:\Users\cmsulzbeck\OneDrive\Área de Trabalho\KanbanAPI\BACK\bin\Debug\net5.0\BACK.runtimeconfig.json
@@ -75,3 +73,5 @@ C:\Users\cmsulzbeck\OneDrive\Área de Trabalho\KanbanAPI\BACK\bin\Debug\net5.0\M
 C:\Users\cmsulzbeck\OneDrive\Área de Trabalho\KanbanAPI\BACK\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\cmsulzbeck\OneDrive\Área de Trabalho\KanbanAPI\BACK\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\cmsulzbeck\OneDrive\Área de Trabalho\KanbanAPI\BACK\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\cmsulzbeck\OneDrive\Área de Trabalho\KanbanAPI\BACK\bin\Debug\net5.0\appsettings.Development.json
+C:\Users\cmsulzbeck\OneDrive\Área de Trabalho\KanbanAPI\BACK\bin\Debug\net5.0\appsettings.json
