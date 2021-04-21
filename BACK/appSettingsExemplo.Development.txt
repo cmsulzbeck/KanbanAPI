@@ -1,0 +1,17 @@
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information"
+    }
+  },
+  "AppSettings": {
+    "User": "ALGUM_USER",
+    "Senha": "ALGUMA_SENHA",
+    "Secret": "812420036f1fbb7f5f5b8bf96d3c3a245c508c8f3b6fff1b40b5afbfc113422a945f06ce609be9dc513db9d8fe62a5e03370e3142a2d5a85c1d2e452998c8c55",
+    "ExpiracaoHoras": 2,
+    "Emissor": "MeuSistema",
+    "ValidoEm": "http://localhost"
+  }
+}

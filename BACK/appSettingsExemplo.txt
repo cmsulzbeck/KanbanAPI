@@ -1,0 +1,19 @@
+{
+  "ConnectionStrings": {
+    "default": "Data Source=Kanban.db"
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information"
+    }
+  },
+  "AllowedHosts": "*",
+  "AppSettings": {
+    "Secret": "ALGUM_SEGREDO",
+    "ExpiracaoHoras": 2,
+    "Emissor": "MeuSistema",
+    "ValidoEm": "http://localhost"
+  }
+}
