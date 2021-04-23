@@ -52,6 +52,7 @@ API para um quadro Kanban com endpoints para login de usuário, consulta, adiç�
 > dotnet watch run
 ```
 - O comando acima deve abrir automaticamente o index.html da aplicação. que é a documentação Swagger da API, nessa página podem ser examinados os endpoints da API. como especificado no gitlabs
+- É necessário fazer a requisição de login antes de fazer qualquer outra, tentar fazer antes, resultará em um código de erro 401 - Unauthorized
 
 ## Tecnologias Usadas
 - IDE: Visual Studio Code
