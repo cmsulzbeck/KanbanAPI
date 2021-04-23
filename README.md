@@ -1,8 +1,28 @@
 # Desafio Técnico - Backend
 
-O propósito desse desafio é a criação de uma API que fará a persistência de dados de um quadro de kanban. Esse quadro possui listas, que contém cards.
+API para um quadro Kanban com endpoints para login de usuário, consulta, adição, edição e remoção de cards.
 
-## Rodando o Frontend
+## Rodando o Projeto
+
+### Clonando o repositório
+- Executar o comando: 
+```console
+> git clone https://github.com/cmsulzbeck/KanbanAPI.git
+```
+
+### Navegando para a pasta do Backend
+- Abrir a pasta do projeto no Visual Studio Code
+- Executar o comando no terminal do Visual Studio Code:
+```console
+> cd .\BACK\
+```
+
+### Setando configurações e variáveis de ambiente
+- Criar os seguintes arquivos no diretório BACK, esses arquivos não subiram para o git, por conter informações sensíveis (nome e senha do usuário e segredo usado para gerar o JWT)
+  - appsettings.json
+  - appsettings.Development.json
+-  Copiar os conteúdos 
+
 
 Um frontend de exemplo foi disponibilizado na pasta FRONT.
 
