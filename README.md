@@ -18,103 +18,52 @@ API para um quadro Kanban com endpoints para login de usuário, consulta, adiç�
 ```
 
 ### Setando configurações e variáveis de ambiente
-- Criar os seguintes arquivos no diretório BACK, esses arquivos não subiram para o git, por conter informações sensíveis (nome e senha do usuário e segredo usado para gerar o JWT)
+- Criar os seguintes arquivos no diretório BACK, respectivamente, esses arquivos não subiram para o git, por conter informações sensíveis (nome e senha do usuário e segredo usado para gerar o JWT)
   - appsettings.json
   - appsettings.Development.json
--  Copiar os conteúdos 
+-  Copiar os conteúdos dos arquivos de exemplo (appsettingsExemplo.txt e appsettingsExemplo.Development.txt) para os arquivos appsettings.json e appsettings.Development.json, respectivamente
+- Setar os valores das variáveis de ambiente com os seguintes valores:
+  - "User": "letscode"
+  - "Senha": Lets@123"
+  - "Segredo":  812420036f1fbb7f5f5b8bf96d3c3a245c508c8f3b6fff1b40b5afbfc113422a945f06ce609be9dc513db9d8fe62a5e03370e3142a2d5a85c1d2e452998c8c55
+- OBS 1: A senha contém um caráctere em upper case, como parte de uma restrição usada no exemplo para gerar a lógica de login do Backend
+- OBS 2: O segredo foi gerado usando um comando JavaScript para gerar uma cadeia de carácteres aleatória, pode ser qualquer valor semelhante, não entendi muito bem como deveria ser feito essa requisição das variáveis de ambiente, por isso essa parte pode estar errada
 
-
-Um frontend de exemplo foi disponibilizado na pasta FRONT.
-
-Para rodá-lo, faça:
-
+### Configurando banco de dados SQLite
+- Executar os seguintes comandos no terminal do Visual Studio Code
 ```console
-> cd FRONT
-> yarn
-> yarn start
+> dotnet ef migrations script
+> dotnet ef database update
 ```
-
-## Desafio
-
-Você precisa criar uma API REST de acordo com os requisitos abaixo, que deve ser desenvolvido na pasta "BACK".
-
-Para criar sua API você pode escolher entre duas tecnologias:
-
-1. Javascript ou Typescript + NodeJS + Express
-2. C# + ASP.NET Core + WebApi
-
-## Requisitos
-
-1. O sistema deve ter um mecanismo de login usando JWT, com um entrypoint que recebe `{ "login":"letscode", "senha":"lets@123"}` e gera um token.
-
-2. O sistema deve ter um middleware que valide se o token é correto, valido e não está expirado, antes de permitir acesso a qualquer outro entrypoint. Em caso negativo retorne status 401.
-
-3. O login e senha fornecidos devem estar em variáveis de ambiente e terem uma versão para o ambiente de desenvolvimento vinda de um arquivo .env no node ou de um arquivo de configuração no ASP.NET. Esse arquivo não deve subir ao GIT, mas sim um arquivo de exemplo sem os valores reais. O mesmo vale para qualquer "segredo" do sistema, como a chave do JWT.
-
-4. Um card terá o seguinte formato: 
-
-```
-id: int | (guid [c#] | uuid [node])
-titulo : string, 
-conteudo: string, 
-lista: string
-```
-
-5. Os entrypoints da aplicação devem usar a porta 5000 e ser:
-
-```
-(POST)      http://0.0.0.0:5000/login/
-
-(GET)       http://0.0.0.0:5000/cards/
-(POST)      http://0.0.0.0:5000/cards/
-(PUT)       http://0.0.0.0:5000/cards/{id}
-(DELETE)    http://0.0.0.0:5000/cards/{id}
-```
-
-6. Para inserir um card o título, o conteúdo e o nome da lista devem estar preenchidos, o id não deve conter valor. Ao inserir retorne o card completo incluindo o id atribuído com o statusCode apropriado. Caso inválido, retorne status 400.
-
-7. Para alterar um card, o entrypoint deve receber um id pela URL e um card pelo corpo da requisição. Valem as mesmas regras de validação do item acima exceto que o id do card deve ser o mesmo id passado pela URL. Na alteração todos os campos são alterados. Caso inválido, retorne status 400. Caso o id não exista retorne 404. Se tudo correu bem, retorne o card alterado.
-
-8. Para remover um card, o entrypoint deve receber um id pela URL. Caso o id não exista retorne 404. Se a remoção for bem sucedida retorne a lista de cards.
-
-9. A listagem de cards deve enviar todos os cards em formato json, contendo as informações completas. 
-
-10. Deve ser usada alguma forma de persistência, no C# pode-se usar o Entity Framework (in-memory), no nodeJS pode ser usado Sequelize + sqlite (in-memory) ou diretamente o driver do sqlite (in-memory).
-
-11. Se preferir optar por utilizar um banco de dados "real", adicione um docker-compose em seu repositório que coloque a aplicação e o banco em execução, quando executado `docker-compose up` na raiz. A connection string e a senha do banco devem ser setados por ENV nesse arquivo.
-
-12. O campo conteúdo do card aceitará markdown, isso não deve impactar no backend, mas não custa avisar...
-
-13. Faça um filter (asp.net) ou middleware (nodejs) que escreva no console sempre que os entrypoints de alteração ou remoção forem usados, indicando o horário formatado como o datetime a seguir: `01/01/2021 13:45:00`. 
-
-A linha de log deve ter o seguinte formato (se a requisição for válida):
-
-`<datetime> - Card <id> - <titulo> - <Remover|Alterar>`
-
-Exemplo:
-
+- O primeiro comando serve para verificar se as configurações do banco de dados estão corretas, já que as migrações subiram para o git junto com o projeto, o segundo comando serve para garantir que o banco de dados esteja atualizado para consulta
+- Foi usada a extensão do SQLite para realizar consultas no banco de dados e testar se os endpoints estavam funcionando corretamente
+- Caso não os comando mencionados acima não funcionem, execute os comando abaixo no terminal do Visual Studio Code:
 ```console
-> 01/01/2021 13:45:00 - Card 1 - Comprar Pão - Removido
+> dotnet ef migrations script
+> dotnet ef migrations add <nome_da_migração>
+> dotnet ef database update
 ```
+- O campo <nome_da_migração> deve ser substituído pelo nome da preferência do Usuário
 
-14. O projeto deve ser colocado em um repositório GITHUB ou equivalente, estar público, e conter um readme.md que explique em detalhes qualquer comando ou configuração necessária para fazer o projeto rodar. Por exemplo, como configurar as variáveis de ambiente, como rodar migrations (se foram usadas). 
+### Rodando a API
+- Abrir o terminal do Visual Studio Code
+- Digitar o seguinte comando:
+```console
+> dotnet watch run
+```
+- O comando acima deve abrir automaticamente o index.html da aplicação. que é a documentação Swagger da API, nessa página podem ser examinados os endpoints da API. como especificado no gitlabs
 
-15. A entrega será apenas a URL para clonarmos o repositório.
+## Tecnologias Usadas
+- IDE: Visual Studio Code
+- Banco de dados: SQLite
+- Teste de requisições: Postman
 
-## Diferenciais e critérios de avaliação
+## Dificuldades
+- A principal dificuldade que enfrentei nesse projeto foi a adição de um dockerfile, a qual não consegui terminar a tempo. Ao testar a imagem gerada pelo Dockerfile, não estava sendo possível acessar o servidor gerado para testar os endpoints dentro do container Docker
 
-Arquiteturas que separem responsabilidades, de baixo acoplamento e alta-coesão são preferíveis, sobretudo usando dependências injetadas, que permitam maior facilidade para testes unitários e de integração.
-
-Avaliaremos se o código é limpo (com boa nomenclatura de classes, variáveis, métodos e funções) e dividido em arquivos bem nomeados, de forma coesa e de acordo com boas práticas. Bem como práticas básicas como tratamento de erros.
-
-Desacoplar e testar as regras de negócios / validações / repositório com testes unitários será considerado um diferencial.
-
-O uso de typescript no node acompanhado das devidas configurações e tipagens bem feitas, bem como uso de técnicas de abstração usando interfaces (especialmente do repositório) serão consideradas um deferencial.
-
-O uso de Linter será considerado um diferencial.
-
-A criação de um docker-compose e de dockerfiles que ao rodar `docker-compose up` subam o sistema por completo (front, back e banco [se houver]) será considerado um diferencial.
-
-Teve dificuldade com algo, ou fez algo meio esquisito para simplificar algo que não estava conseguindo fazer? Deixe uma observação com a justificativa no readme.md para nós...
-
-Entregou incompleto, teve dificuldade com algo, ou fez algo meio esquisito para simplificar alguma coisa que não estava conseguindo fazer? Deixe uma observação com a justificativa no readme.md para nós...
+## Contatos
+- Caso não esteja sendo possível rodar o projeto, seguem meus contatos e o link para o meu github, para que eu possa esclarecer quaisquer dúvidas:
+  - [Repositório do Projeto](https://github.com/cmsulzbeck/KanbanAPI).
+  - [Meu GitHub](https://github.com/cmsulzbeck).
+  - Meu email: cmsulzbeck@hotmail.com
+  - Telefone: (11)99995-4037
