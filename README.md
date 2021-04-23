@@ -54,6 +54,7 @@ API para um quadro Kanban com endpoints para login de usuário, consulta, adiç�
 ```
 - O comando acima deve abrir automaticamente o index.html da aplicação. que é a documentação Swagger da API, nessa página podem ser examinados os endpoints da API. como especificado no gitlabs
 - É necessário fazer a requisição de login antes de fazer qualquer outra, tentar fazer antes, resultará em um código de erro 401 - Unauthorized
+- Não é possível passar o token gerado no endpoint de login para os outros endpoints via Swagger, é necessário usar uma forma alternativa de envio de requisições, no meu caso, o software usado é o Postman.
 
 ## Tecnologias Usadas
 - IDE: Visual Studio Code
