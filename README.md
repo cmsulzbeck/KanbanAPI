@@ -28,6 +28,7 @@ API para um quadro Kanban com endpoints para login de usuário, consulta, adiç�
   - "Segredo":  812420036f1fbb7f5f5b8bf96d3c3a245c508c8f3b6fff1b40b5afbfc113422a945f06ce609be9dc513db9d8fe62a5e03370e3142a2d5a85c1d2e452998c8c55
 - OBS 1: A senha contém um caráctere em upper case, como parte de uma restrição usada no exemplo para gerar a lógica de login do Backend
 - OBS 2: O segredo foi gerado usando um comando JavaScript para gerar uma cadeia de carácteres aleatória, pode ser qualquer valor semelhante, não entendi muito bem como deveria ser feito essa requisição das variáveis de ambiente, por isso essa parte pode estar errada
+- OBS 3: No arquivo appsettings.json, a única variável que é necessária copiar é a "Secret".
 
 ### Configurando banco de dados SQLite
 - Executar os seguintes comandos no terminal do Visual Studio Code
